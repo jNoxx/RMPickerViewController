@@ -12,9 +12,7 @@ Pod::Spec.new do |s|
   s.author       = { "Thijs Bastiaens" => "thijs.bastiaens@gmail.com" }
 
   s.source       = { :git => "https://github.com/jNoxx/RMPickerViewController.git", :tag => "2.3.1" }
-  s.source_files = 'RMPickerViewController/*.{h,m}'
+  s.source_files = 'RMPickerViewController/**/*.{h,m}'
+  s.public_header_files  = 'RMActionController/RMPickerViewController.h', 'RMPickerViewController/RMActionController/RMActionController.h', 'RMPickerViewController/RMActionController/Actions/RMAction.h', 'RMPickerViewController/RMActionController/Actions/RMImageAction.h', 'RMPickerViewController/RMActionController/Grouping Actions/RMGroupedAction.h', 'RMPickerViewController/RMActionController/Grouping Actions/RMScrollableGroupedAction.h'
   s.requires_arc = true
-
-  s.dependency = 'jNoxx/RMActionController'
-
 end
