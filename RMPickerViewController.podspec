@@ -15,5 +15,6 @@ Pod::Spec.new do |s|
   s.source_files = 'RMPickerViewController/*.{h,m}'
   s.requires_arc = true
 
-  s.dependency = 'RMActionController', :git => 'https://github.com/jNoxx/RMActionController'
+  s.dependency = 'RMActionController', :git => 'https://github.com/jNoxx/RMActionController.git'
+
 end
