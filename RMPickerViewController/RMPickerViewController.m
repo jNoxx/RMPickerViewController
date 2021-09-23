@@ -48,8 +48,9 @@
 @implementation RMPickerViewController
 
 #pragma mark - Class
+
 - (instancetype)initWithStyle:(RMActionControllerStyle)style title:(NSString *)aTitle message:(NSString *)aMessage selectAction:(RMAction *)selectAction andCancelAction:(RMAction *)cancelAction {
-    self = [super initWithStyle:style title:aTitle message:aMessage selectAction:selectAction andCancelAction:cancelAction];
+    self = [super initWithStyle:style appearance:nil title:aTitle message:aMessage selectAction:selectAction andCancelAction:cancelAction];
     if (self) {
         self.picker = [[UIPickerView alloc] initWithFrame:CGRectZero];
         self.picker.translatesAutoresizingMaskIntoConstraints = NO;
