@@ -7,13 +7,13 @@ Pod::Spec.new do |s|
 
   s.homepage     = "https://github.com/CooperRS/RMPickerViewController"
   s.screenshots  = "http://cooperrs.github.io/RMPickerViewController/images/Blur-Screen1.png", "http://cooperrs.github.io/RMPickerViewController/images/Blur-Screen2.png", "http://cooperrs.github.io/RMPickerViewController/images/Blur-Screen3.png"
-  
+
   s.license      = { :type => 'MIT', :file => 'LICENSE' }
-  s.author       = { "Roland Moers" => "rm@cooperrs.de" }
-  
-  s.source       = { :git => "https://github.com/CooperRS/RMPickerViewController.git", :tag => "2.3.1" }
+  s.author       = { "Thijs Bastiaens" => "thijs.bastiaens@gmail.com" }
+
+  s.source       = { :git => "https://github.com/jNoxx/RMPickerViewController", :tag => "2.3.1" }
   s.source_files = 'RMPickerViewController/*.{h,m}'
   s.requires_arc = true
-  
-  s.dependency   'RMActionController', '~> 1.3.1'
+
+  s.dependency = 'RMActionController', :git => 'https://github.com/jNoxx/RMActionController'
 end
