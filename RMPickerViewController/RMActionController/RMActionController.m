@@ -71,6 +71,7 @@
 @synthesize disableMotionEffects = _disableMotionEffects;
 
 #pragma mark - Class
+
 + (nonnull instancetype)actionControllerWithStyle:(RMActionControllerStyle)style {
     return [self actionControllerWithStyle:style selectAction:nil andCancelAction:nil];
 }
@@ -84,7 +85,7 @@
 }
 
 + (nonnull instancetype)actionControllerWithStyle:(RMActionControllerStyle)style appearance:(RMActionControllerAppearance *)appearance title:(nullable NSString *)aTitle message:(nullable NSString *)aMessage selectAction:(nullable RMAction *)selectAction andCancelAction:(nullable RMAction *)cancelAction {
-    return [[self alloc] initWithStyle:style title:aTitle message:aMessage selectAction:selectAction andCancelAction:cancelAction];
+    return [[self alloc] initWithStyle:style appearance:appearance title:aTitle message:aMessage selectAction:selectAction andCancelAction:cancelAction];
 }
 
 #pragma mark - Init and Dealloc
