@@ -11,7 +11,7 @@ Pod::Spec.new do |s|
   s.license      = { :type => 'MIT', :file => 'LICENSE' }
   s.author       = { "Thijs Bastiaens" => "thijs.bastiaens@gmail.com" }
 
-  s.source       = { :git => "https://github.com/jNoxx/RMPickerViewController", :tag => "2.3.1" }
+  s.source       = { :git => "https://github.com/jNoxx/RMPickerViewController.git", :tag => "2.3.1" }
   s.source_files = 'RMPickerViewController/*.{h,m}'
   s.requires_arc = true
 
