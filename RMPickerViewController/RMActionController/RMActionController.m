@@ -75,7 +75,7 @@
     return [self actionControllerWithStyle:style selectAction:nil andCancelAction:nil];
 }
 
-+ (nonnull instancetype)actionControllerWithStyle:(RMActionControllerStyle)style appearance:(RMActionControllerAppearance *)appearance {
++ (nonnull instancetype)actionControllerWithStyle:(RMActionControllerStyle)style appearance:(nullable RMActionControllerAppearance *)appearance {
     return [self actionControllerWithStyle:style appearance:appearance title:nil message:nil selectAction:nil cancelAction:nil];
 }
 
@@ -108,12 +108,12 @@
     self = [super initWithNibName:nil bundle:nil];
     if(self) {
         [self setup];
-        
+
         self.style = aStyle;
         self.title = aTitle;
         self.message = aMessage;
         self.appearance = appearance;
-        
+
         if (selectAction && cancelAction) {
             RMGroupedAction *action = [RMGroupedAction actionWithStyle:RMActionStyleDefault andActions:@[cancelAction, selectAction]];
             [self addAction:action];
@@ -121,7 +121,7 @@
             if (cancelAction) {
                 [self addAction:cancelAction];
             }
-            
+
             if (selectAction) {
                 [self addAction:selectAction];
             }
@@ -134,71 +134,71 @@
     self.additionalActions = [NSMutableArray array];
     self.doneActions = [NSMutableArray array];
     self.cancelActions = [NSMutableArray array];
-    
+
     if([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0) {
         self.modalPresentationStyle = UIModalPresentationOverCurrentContext;
     } else {
         self.modalPresentationStyle = UIModalPresentationCustom;
     }
-    
+
     self.transitioningDelegate = self;
 
     self.disableBlurEffectsForBackgroundView = YES;
     [self setupUIElements];
-    
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateFont) name:UIContentSizeCategoryDidChangeNotification object:nil];
 }
 
 - (void)viewDidLoad {
     NSAssert(self.contentView != nil, @"Error: The view of an RMActionController has been loaded before a contentView has been set. You have to set the contentView before presenting a RMActionController.");
-    
+
     [super viewDidLoad];
-    
+
 #ifdef DEBUG
     self.view.accessibilityLabel = @"ActionControllerView";
 #endif
-    
+
     self.view.translatesAutoresizingMaskIntoConstraints = YES;
     self.view.backgroundColor = [UIColor clearColor];
     self.view.layer.masksToBounds = YES;
-    
+
     [self setupContainerElements];
-    
+
     if(self.modalPresentationStyle != UIModalPresentationPopover) {
         [self.view addSubview:self.backgroundView];
-        
+
         [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-(0)-[BGView]-(0)-|" options:0 metrics:nil views:@{@"BGView": self.backgroundView}]];
         [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(0)-[BGView]-(0)-|" options:0 metrics:nil views:@{@"BGView": self.backgroundView}]];
     }
-    
+
     [self.view addSubview:self.topContainer];
     if([self.cancelActions count] > 0) {
         [self.view addSubview:self.bottomContainer];
     }
-    
+
     [self setupConstraints];
     if(self.modalPresentationStyle == UIModalPresentationPopover) {
         [self setupTopContainersTopMarginConstraint];
     }
-    
+
     if(!self.disableMotionEffects) {
         UIInterpolatingMotionEffect *verticalMotionEffect = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.y" type:UIInterpolatingMotionEffectTypeTiltAlongVerticalAxis];
         verticalMotionEffect.minimumRelativeValue = @(-10);
         verticalMotionEffect.maximumRelativeValue = @(10);
-        
+
         UIInterpolatingMotionEffect *horizontalMotionEffect = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.x" type:UIInterpolatingMotionEffectTypeTiltAlongHorizontalAxis];
         horizontalMotionEffect.minimumRelativeValue = @(-10);
         horizontalMotionEffect.maximumRelativeValue = @(10);
-        
+
         UIMotionEffectGroup *motionEffectGroup = [UIMotionEffectGroup new];
         motionEffectGroup.motionEffects = @[horizontalMotionEffect, verticalMotionEffect];
-        
+
         [self.view addMotionEffect:motionEffectGroup];
     }
-    
+
     CGSize minimalSize = [self.view systemLayoutSizeFittingSize:CGSizeMake(999, 999)];
     self.preferredContentSize = CGSizeMake(minimalSize.width, minimalSize.height+10);
-    
+
     if([self respondsToSelector:@selector(popoverPresentationController)]) {
         self.popoverPresentationController.delegate = self;
     }
@@ -206,7 +206,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
+
     self.hasBeenDismissed = NO;
 }
 
@@ -232,14 +232,14 @@
     self.headerMessageLabel.translatesAutoresizingMaskIntoConstraints = NO;
     self.headerMessageLabel.textAlignment = NSTextAlignmentCenter;
     self.headerMessageLabel.numberOfLines = 0;
-    
+
     if (self.appearance) {
         self.headerTitleLabel.textColor = self.appearance.titleColor;
         self.headerMessageLabel.textColor = self.appearance.subtitleColor;
     }
-    
+
     [self updateFont];
-    
+
     if([[NSProcessInfo processInfo] operatingSystemVersion].majorVersion >= 10) {
         self.headerTitleLabel.adjustsFontForContentSizeCategory = YES;
         self.headerMessageLabel.adjustsFontForContentSizeCategory = YES;
@@ -391,19 +391,19 @@
 
 - (void)setupTopContainerContentConstraintsWithMetrics:(NSDictionary *)metrics {
     __block UIView *currentTopView = nil;
-    
+
     if([self currentStyleIsSheet]) {
         UIView *seperator = [UIView seperatorView];
         [self addSubview:seperator toContainer:self.topContainer];
-        
+
         [self.topContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-(0)-[seperator]-(0)-|" options:0 metrics:nil views:@{@"seperator": seperator}]];
         [self.topContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[seperator(seperatorHeight)]" options:0 metrics:metrics views:@{@"seperator": seperator}]];
 
         [self.topContainer addConstraint:[NSLayoutConstraint constraintWithItem:seperator attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:[self topContainerBottomItem] attribute:NSLayoutAttributeBottom multiplier:1 constant:0]];
-        
+
         currentTopView = seperator;
     }
-    
+
     __weak RMActionController *blockself = self;
     [self.doneActions enumerateObjectsUsingBlock:^(RMAction *action, NSUInteger index, BOOL *stop) {
         UIView *seperator = [UIView seperatorView];
@@ -498,35 +498,35 @@
 - (void)setupBottomContainerContentConstraintsWithMetrics:(NSDictionary *)metrics {
     __weak RMActionController *blockself = self;
     __block UIView *currentTopView = nil;
-    
+
     [self.cancelActions enumerateObjectsUsingBlock:^(RMAction *action, NSUInteger index, BOOL *stop) {
         if(!currentTopView) {
             UIView *seperatorView = [UIView seperatorView];
             [blockself addSubview:seperatorView toContainer:blockself.bottomContainer];
-            
+
             NSDictionary *bindings = @{@"actionView": action.view, @"seperator": seperatorView};
-            
+
             [blockself.bottomContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-(0)-[actionView]-(0)-|" options:0 metrics:nil views:bindings]];
             [blockself.bottomContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-(0)-[seperator]-(0)-|" options:0 metrics:nil views:bindings]];
             [blockself.bottomContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[actionView]-(0)-[seperator(seperatorHeight)]-(0)-|" options:0 metrics:metrics views:bindings]];
         } else {
             UIView *seperatorView = [UIView seperatorView];
             [blockself addSubview:seperatorView toContainer:self.bottomContainer];
-            
+
             NSDictionary *bindings = @{@"actionView": action.view, @"currentTopView": currentTopView, @"seperator": seperatorView};
-            
+
             [blockself.bottomContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-(0)-[actionView]-(0)-|" options:0 metrics:nil views:bindings]];
             [blockself.bottomContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-(0)-[seperator]-(0)-|" options:0 metrics:nil views:bindings]];
             [blockself.bottomContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[actionView]-(0)-[seperator(seperatorHeight)]-(0)-[currentTopView]" options:0 metrics:metrics views:bindings]];
         }
-        
+
         currentTopView = action.view;
     }];
-    
+
     if(currentTopView == nil) {
         return;
     }
-    
+
     [self.bottomContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(0)-[currentTopView]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(currentTopView)]];
 }
 
@@ -631,10 +631,10 @@
 - (void)updateFont {
     UIFontDescriptor *descriptor = [UIFontDescriptor preferredFontDescriptorWithTextStyle:UIFontTextStyleFootnote];
     self.headerMessageLabel.font = [UIFont fontWithDescriptor:descriptor size:descriptor.pointSize];
-    
+
     descriptor = [descriptor fontDescriptorWithSymbolicTraits:UIFontDescriptorTraitBold];
     self.headerTitleLabel.font = [UIFont fontWithDescriptor:descriptor size:descriptor.pointSize];
-    
+
     // If appearance.
     if (self.appearance) {
         self.headerTitleLabel.font = self.appearance.titleFont;
@@ -683,7 +683,7 @@
     } else if(&UIAccessibilityIsReduceTransparencyEnabled && UIAccessibilityIsReduceTransparencyEnabled()) {
         return YES;
     }
-    
+
     return _disableBlurEffects;
 }
 
@@ -691,7 +691,7 @@
     if(self.disableBlurEffects) {
         return YES;
     }
-    
+
     return _disableBlurEffectsForBackgroundView;
 }
 
@@ -699,7 +699,7 @@
     if(self.disableBlurEffects) {
         return YES;
     }
-    
+
     return _disableBlurEffectsForContentView;
 }
 
@@ -707,7 +707,7 @@
     if(self.disableBlurEffects) {
         return YES;
     }
-    
+
     return _disableBlurEffectsForActions;
 }
 
@@ -715,11 +715,11 @@
     if(&UIAccessibilityIsReduceMotionEnabled && UIAccessibilityIsReduceMotionEnabled()) {
         return YES;
     }
-    
+
     if(self.style == RMActionControllerStyleSheetWhite || self.style == RMActionControllerStyleSheetBlack || self.style == RMActionControllerStyleSheetAdaptive) {
         return YES;
     }
-    
+
     return _disableBouncingEffects;
 }
 
@@ -727,11 +727,11 @@
     if(&UIAccessibilityIsReduceMotionEnabled && UIAccessibilityIsReduceMotionEnabled()) {
         return YES;
     }
-    
+
     if(self.style == RMActionControllerStyleSheetWhite || self.style == RMActionControllerStyleSheetBlack || self.style == RMActionControllerStyleSheetAdaptive) {
         return YES;
     }
-    
+
     return _disableMotionEffects;
 }
 
@@ -744,13 +744,13 @@
             UIVisualEffect *effect = [UIBlurEffect effectWithStyle:[self backgroundBlurEffectStyleForCurrentStyle]];
             self.backgroundView = [[UIVisualEffectView alloc] initWithEffect:effect];
         }
-        
+
         _backgroundView.translatesAutoresizingMaskIntoConstraints = NO;
-        
+
         UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backgroundViewTapped:)];
         [_backgroundView addGestureRecognizer:tapRecognizer];
     }
-    
+
     return _backgroundView;
 }
 
@@ -774,14 +774,14 @@
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
     RMActionControllerTransition *animationController = [[RMActionControllerTransition alloc] init];
     animationController.animationStyle = RMActionControllerTransitionStylePresenting;
-    
+
     return animationController;
 }
 
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
     RMActionControllerTransition *animationController = [[RMActionControllerTransition alloc] init];
     animationController.animationStyle = RMActionControllerTransitionStyleDismissing;
-    
+
     return animationController;
 }
 
@@ -812,7 +812,7 @@
             [self.doneActions addObject:action];
             break;
     }
-    
+
     action.controller = self;
 }
 

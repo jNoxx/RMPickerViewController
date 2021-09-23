@@ -91,7 +91,7 @@ typedef NS_ENUM(NSInteger, RMActionControllerStyle) {
  *
  *  @return A new instance of RMActionController.
  */
-+ (nonnull instancetype)actionControllerWithStyle:(RMActionControllerStyle)style appearance:(RMActionControllerAppearance *)appearance;
++ (nonnull instancetype)actionControllerWithStyle:(RMActionControllerStyle)style appearance:(nullable RMActionControllerAppearance *)appearance;
 
 /**
  *  Returns a new instance of RMActionController.
