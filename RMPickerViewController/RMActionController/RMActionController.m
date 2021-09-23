@@ -77,7 +77,7 @@
 }
 
 + (nonnull instancetype)actionControllerWithStyle:(RMActionControllerStyle)style appearance:(nullable RMActionControllerAppearance *)appearance {
-    return [self actionControllerWithStyle:style appearance:appearance title:nil message:nil selectAction:nil cancelAction:nil];
+    return [self actionControllerWithStyle:style appearance:appearance title:nil message:nil selectAction:nil andCancelAction:nil];
 }
 
 + (nonnull instancetype)actionControllerWithStyle:(RMActionControllerStyle)style selectAction:(nullable RMAction *)selectAction andCancelAction:(nullable RMAction *)cancelAction {
