@@ -107,13 +107,13 @@
 
 - (instancetype)initWithStyle:(RMActionControllerStyle)aStyle appearance:(RMActionControllerAppearance *)appearance title:(NSString *)aTitle message:(NSString *)aMessage selectAction:(RMAction *)selectAction andCancelAction:(RMAction *)cancelAction {
     self = [super initWithNibName:nil bundle:nil];
-    if(self) {
+    if (self) {
         [self setup];
 
         self.style = aStyle;
         self.title = aTitle;
         self.message = aMessage;
-        self.appearance = appearance;
+        //self.appearance = appearance;
 
         if (selectAction && cancelAction) {
             RMGroupedAction *action = [RMGroupedAction actionWithStyle:RMActionStyleDefault andActions:@[cancelAction, selectAction]];
@@ -136,7 +136,7 @@
     self.doneActions = [NSMutableArray array];
     self.cancelActions = [NSMutableArray array];
 
-    if([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0) {
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0) {
         self.modalPresentationStyle = UIModalPresentationOverCurrentContext;
     } else {
         self.modalPresentationStyle = UIModalPresentationCustom;
@@ -165,7 +165,7 @@
 
     [self setupContainerElements];
 
-    if(self.modalPresentationStyle != UIModalPresentationPopover) {
+    if (self.modalPresentationStyle != UIModalPresentationPopover) {
         [self.view addSubview:self.backgroundView];
 
         [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-(0)-[BGView]-(0)-|" options:0 metrics:nil views:@{@"BGView": self.backgroundView}]];
@@ -173,16 +173,16 @@
     }
 
     [self.view addSubview:self.topContainer];
-    if([self.cancelActions count] > 0) {
+    if ([self.cancelActions count] > 0) {
         [self.view addSubview:self.bottomContainer];
     }
 
     [self setupConstraints];
-    if(self.modalPresentationStyle == UIModalPresentationPopover) {
+    if (self.modalPresentationStyle == UIModalPresentationPopover) {
         [self setupTopContainersTopMarginConstraint];
     }
 
-    if(!self.disableMotionEffects) {
+    if (!self.disableMotionEffects) {
         UIInterpolatingMotionEffect *verticalMotionEffect = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.y" type:UIInterpolatingMotionEffectTypeTiltAlongVerticalAxis];
         verticalMotionEffect.minimumRelativeValue = @(-10);
         verticalMotionEffect.maximumRelativeValue = @(10);
@@ -200,7 +200,7 @@
     CGSize minimalSize = [self.view systemLayoutSizeFittingSize:CGSizeMake(999, 999)];
     self.preferredContentSize = CGSizeMake(minimalSize.width, minimalSize.height+10);
 
-    if([self respondsToSelector:@selector(popoverPresentationController)]) {
+    if ([self respondsToSelector:@selector(popoverPresentationController)]) {
         self.popoverPresentationController.delegate = self;
     }
 }
@@ -216,6 +216,7 @@
 }
 
 #pragma mark - UI Element Setup
+
 - (void)setupUIElements {
     //Instantiate elements
     self.headerTitleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
@@ -241,7 +242,7 @@
 
     [self updateFont];
 
-    if([[NSProcessInfo processInfo] operatingSystemVersion].majorVersion >= 10) {
+    if ([[NSProcessInfo processInfo] operatingSystemVersion].majorVersion >= 10) {
         self.headerTitleLabel.adjustsFontForContentSizeCategory = YES;
         self.headerMessageLabel.adjustsFontForContentSizeCategory = YES;
     }
@@ -256,7 +257,7 @@
     self.topContainer = [[UIView alloc] initWithFrame:CGRectZero];
 
     UIView *viewForAddingSubviews = nil;
-    if(self.disableBlurEffects) {
+    if (self.disableBlurEffects) {
         viewForAddingSubviews = self.topContainer;
     } else {
         UIBlurEffect *blur = [UIBlurEffect effectWithStyle:[self containerBlurEffectStyleForCurrentStyle]];
@@ -273,26 +274,26 @@
         viewForAddingSubviews = vibrancyView.contentView;
     }
 
-    if(!self.disableBlurEffectsForContentView) {
+    if (!self.disableBlurEffectsForContentView) {
         [viewForAddingSubviews addSubview:self.contentView];
     } else {
         [self.topContainer addSubview:self.contentView];
     }
 
-    if([self.headerTitleLabel.text length] > 0) {
+    if ([self.headerTitleLabel.text length] > 0) {
         [viewForAddingSubviews addSubview:self.headerTitleLabel];
     }
 
-    if([self.headerMessageLabel.text length] > 0) {
+    if ([self.headerMessageLabel.text length] > 0) {
         [viewForAddingSubviews addSubview:self.headerMessageLabel];
     }
 
-    for(RMAction *anAction in self.additionalActions) {
+    for (RMAction *anAction in self.additionalActions) {
         UIView *view = self.disableBlurEffectsForActions ? self.topContainer : viewForAddingSubviews;
         [view addSubview:anAction.view];
     }
 
-    for(RMAction *anAction in self.doneActions) {
+    for (RMAction *anAction in self.doneActions) {
         UIView *view = self.disableBlurEffectsForActions ? self.topContainer : viewForAddingSubviews;
         [view addSubview:anAction.view];
     }
@@ -302,7 +303,7 @@
     self.topContainer.clipsToBounds = YES;
     self.topContainer.translatesAutoresizingMaskIntoConstraints = NO;
 
-    if(!self.disableBlurEffects) {
+    if (!self.disableBlurEffects) {
         self.topContainer.backgroundColor = [UIColor clearColor];
     } else {
         self.topContainer.backgroundColor = [UIColor whiteColor];
@@ -318,7 +319,7 @@
     self.bottomContainer = [[UIView alloc] initWithFrame:CGRectZero];
 
     UIView *viewForAddingSubviews = nil;
-    if(self.disableBlurEffects) {
+    if (self.disableBlurEffects) {
         viewForAddingSubviews = self.bottomContainer;
     } else {
         UIBlurEffect *blur = [UIBlurEffect effectWithStyle:[self containerBlurEffectStyleForCurrentStyle]];
@@ -335,7 +336,7 @@
         viewForAddingSubviews = vibrancyView.contentView;
     }
 
-    for(RMAction *anAction in self.cancelActions) {
+    for (RMAction *anAction in self.cancelActions) {
         UIView *view = self.disableBlurEffectsForActions ? self.bottomContainer : viewForAddingSubviews;
         [view addSubview:anAction.view];
     }
@@ -345,7 +346,7 @@
     self.bottomContainer.clipsToBounds = YES;
     self.bottomContainer.translatesAutoresizingMaskIntoConstraints = NO;
 
-    if(!self.disableBlurEffects) {
+    if (!self.disableBlurEffects) {
         self.bottomContainer.backgroundColor = [UIColor clearColor];
     } else {
         self.bottomContainer.backgroundColor = [UIColor whiteColor];
@@ -377,7 +378,7 @@
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-(Margin)-[topContainer]-(Margin)-|" options:0 metrics:metrics views:bindingsDict]];
 
     id item;
-    if([self.cancelActions count] <= 0) {
+    if ([self.cancelActions count] <= 0) {
         item = self.topContainer;
     } else {
         [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-(Margin)-[bottomContainer]-(Margin)-|" options:0 metrics:metrics views:bindingsDict]];
@@ -393,7 +394,7 @@
 - (void)setupTopContainerContentConstraintsWithMetrics:(NSDictionary *)metrics {
     __block UIView *currentTopView = nil;
 
-    if([self currentStyleIsSheet]) {
+    if ([self currentStyleIsSheet]) {
         UIView *seperator = [UIView seperatorView];
         [self addSubview:seperator toContainer:self.topContainer];
 
@@ -410,7 +411,7 @@
         UIView *seperator = [UIView seperatorView];
         [blockself addSubview:seperator toContainer:blockself.topContainer];
 
-        if(!currentTopView) {
+        if (!currentTopView) {
             NSDictionary *bindings = @{@"actionView": action.view, @"seperator": seperator};
 
             [blockself.topContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-(0)-[actionView]-(0)-|" options:0 metrics:nil views:bindings]];
@@ -431,13 +432,13 @@
 
     [self.topContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-(0)-[contentView]-(0)-|" options:0 metrics:nil views:@{@"contentView": self.contentView}]];
 
-    if(currentTopView) {
+    if (currentTopView) {
         [self.topContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[contentView]-(0)-[currentTopView]" options:0 metrics:nil views:@{@"contentView": self.contentView, @"currentTopView": currentTopView}]];
     } else {
         [self.topContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[contentView]-(0)-|" options:0 metrics:nil views:@{@"contentView": self.contentView}]];
     }
 
-    if([self.additionalActions count] > 0 || [self.headerMessageLabel.text length] > 0 || [self.headerTitleLabel.text length] > 0) {
+    if ([self.additionalActions count] > 0 || [self.headerMessageLabel.text length] > 0 || [self.headerTitleLabel.text length] > 0) {
         __weak RMActionController *blockself = self;
         __block UIView *currentTopView = self.contentView;
 
@@ -456,7 +457,7 @@
             currentTopView = actionView;
         }];
 
-        if([self.headerMessageLabel.text length] > 0 || [self.headerTitleLabel.text length] > 0) {
+        if ([self.headerMessageLabel.text length] > 0 || [self.headerTitleLabel.text length] > 0) {
             UIView *seperatorView = [UIView seperatorView];
             [self addSubview:seperatorView toContainer:self.topContainer];
 
@@ -467,7 +468,7 @@
 
             currentTopView = seperatorView;
 
-            if([self.headerMessageLabel.text length] > 0) {
+            if ([self.headerMessageLabel.text length] > 0) {
                 bindings = @{@"messageLabel": self.headerMessageLabel, @"currentTopView": currentTopView};
 
                 [self.topContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-(5)-[messageLabel]-(5)-|" options:0 metrics:nil views:bindings]];
@@ -476,7 +477,7 @@
                 currentTopView = self.headerMessageLabel;
             }
 
-            if([self.headerTitleLabel.text length] > 0) {
+            if ([self.headerTitleLabel.text length] > 0) {
                 bindings = @{@"titleLabel": self.headerTitleLabel, @"currentTopView": currentTopView};
                 NSDictionary *metrics = @{@"Margin": [currentTopView isKindOfClass:[UILabel class]] ? @(2) : @(10)};
 
@@ -491,7 +492,7 @@
         NSDictionary *bindings = NSDictionaryOfVariableBindings(currentTopView);
 
         [self.topContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(Margin)-[currentTopView]" options:0 metrics:metrics views:bindings]];
-    } else  {
+    } else {
         [self.topContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(0)-[contentView]" options:0 metrics:nil views:@{@"contentView": self.contentView}]];
     }
 }
@@ -501,7 +502,7 @@
     __block UIView *currentTopView = nil;
 
     [self.cancelActions enumerateObjectsUsingBlock:^(RMAction *action, NSUInteger index, BOOL *stop) {
-        if(!currentTopView) {
+        if (!currentTopView) {
             UIView *seperatorView = [UIView seperatorView];
             [blockself addSubview:seperatorView toContainer:blockself.bottomContainer];
 
@@ -524,7 +525,7 @@
         currentTopView = action.view;
     }];
 
-    if(currentTopView == nil) {
+    if (currentTopView == nil) {
         return;
     }
 
@@ -537,6 +538,7 @@
 }
 
 #pragma mark - Helper
+
 - (NSInteger)cornerRadiusForCurrentStyle {
     switch (self.style) {
         case RMActionControllerStyleWhite:
@@ -603,8 +605,8 @@
 
 - (void)handleCancelNotAssociatedWithAnyButton {
     // Grouped Actions are stored in the doneActions array, so we'll need to check them as well
-    for(RMAction *anAction in [self.cancelActions arrayByAddingObjectsFromArray:self.doneActions]) {
-        if([anAction containsCancelAction]) {
+    for (RMAction *anAction in [self.cancelActions arrayByAddingObjectsFromArray:self.doneActions]) {
+        if ([anAction containsCancelAction]) {
             [anAction executeHandlerOfCancelActionWithController:self];
             return;
         }
@@ -612,13 +614,13 @@
 }
 
 - (void)backgroundViewTapped:(UIGestureRecognizer *)sender {
-    if(!self.disableBackgroundTaps) {
+    if (!self.disableBackgroundTaps) {
         [self handleCancelNotAssociatedWithAnyButton];
     }
 }
 
 - (void)addSubview:(UIView *)subview toContainer:(UIView *)container {
-    if([container isKindOfClass:[UIVisualEffectView class]]) {
+    if ([container isKindOfClass:[UIVisualEffectView class]]) {
         [[[[[(UIVisualEffectView *)container contentView] subviews] objectAtIndex:0] contentView] addSubview:subview];
     } else {
         [container addSubview:subview];
@@ -655,7 +657,7 @@
 
 - (id)topContainerBottomItem {
     id bottomItem;
-    if(@available(iOS 11, *)) {
+    if (@available(iOS 11, *)) {
         bottomItem = [self currentStyleIsSheet] ? self.topContainer.safeAreaLayoutGuide : self.topContainer;
     } else {
         bottomItem = self.topContainer;
@@ -664,6 +666,7 @@
 }
 
 #pragma mark - iOS Properties
+
 - (UIStatusBarStyle)preferredStatusBarStyle {
     switch (self.style) {
         case RMActionControllerStyleWhite:
@@ -678,8 +681,9 @@
 }
 
 #pragma mark - Custom Properties
+
 - (BOOL)disableBlurEffects {
-    if(!NSClassFromString(@"UIBlurEffect") || !NSClassFromString(@"UIVibrancyEffect") || !NSClassFromString(@"UIVisualEffectView")) {
+    if (!NSClassFromString(@"UIBlurEffect") || !NSClassFromString(@"UIVibrancyEffect") || !NSClassFromString(@"UIVisualEffectView")) {
         return YES;
     } else if(&UIAccessibilityIsReduceTransparencyEnabled && UIAccessibilityIsReduceTransparencyEnabled()) {
         return YES;
@@ -689,7 +693,7 @@
 }
 
 - (BOOL)disableBlurEffectsForBackgroundView {
-    if(self.disableBlurEffects) {
+    if (self.disableBlurEffects) {
         return YES;
     }
 
@@ -697,7 +701,7 @@
 }
 
 - (BOOL)disableBlurEffectsForContentView {
-    if(self.disableBlurEffects) {
+    if (self.disableBlurEffects) {
         return YES;
     }
 
@@ -705,7 +709,7 @@
 }
 
 - (BOOL)disableBlurEffectsForActions {
-    if(self.disableBlurEffects) {
+    if (self.disableBlurEffects) {
         return YES;
     }
 
@@ -713,11 +717,11 @@
 }
 
 - (BOOL)disableBouncingEffects {
-    if(&UIAccessibilityIsReduceMotionEnabled && UIAccessibilityIsReduceMotionEnabled()) {
+    if (&UIAccessibilityIsReduceMotionEnabled && UIAccessibilityIsReduceMotionEnabled()) {
         return YES;
     }
 
-    if(self.style == RMActionControllerStyleSheetWhite || self.style == RMActionControllerStyleSheetBlack || self.style == RMActionControllerStyleSheetAdaptive) {
+    if (self.style == RMActionControllerStyleSheetWhite || self.style == RMActionControllerStyleSheetBlack || self.style == RMActionControllerStyleSheetAdaptive) {
         return YES;
     }
 
@@ -725,11 +729,11 @@
 }
 
 - (BOOL)disableMotionEffects {
-    if(&UIAccessibilityIsReduceMotionEnabled && UIAccessibilityIsReduceMotionEnabled()) {
+    if (&UIAccessibilityIsReduceMotionEnabled && UIAccessibilityIsReduceMotionEnabled()) {
         return YES;
     }
 
-    if(self.style == RMActionControllerStyleSheetWhite || self.style == RMActionControllerStyleSheetBlack || self.style == RMActionControllerStyleSheetAdaptive) {
+    if (self.style == RMActionControllerStyleSheetWhite || self.style == RMActionControllerStyleSheetBlack || self.style == RMActionControllerStyleSheetAdaptive) {
         return YES;
     }
 
@@ -737,8 +741,8 @@
 }
 
 - (UIView *)backgroundView {
-    if(!_backgroundView) {
-        if(self.disableBlurEffectsForBackgroundView) {
+    if (!_backgroundView) {
+        if (self.disableBlurEffectsForBackgroundView) {
             self.backgroundView = [[UIView alloc] initWithFrame:CGRectZero];
             _backgroundView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.4];
         } else {
