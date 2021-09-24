@@ -26,6 +26,6 @@
 
 #import "RMActionControllerAppearance.h"
 
-@interface RMActionControllerAppearance: NSObject ()
+@implementation RMActionControllerAppearance
 
 @end
