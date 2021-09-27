@@ -114,12 +114,13 @@
 - (instancetype)initWithStyle:(RMActionControllerStyle)aStyle appearance:(RMActionControllerAppearance *)appearance title:(NSString *)aTitle message:(NSString *)aMessage selectAction:(RMAction *)selectAction andCancelAction:(RMAction *)cancelAction {
     self = [super initWithNibName:nil bundle:nil];
     if (self) {
+        self.appearance = appearance;
+
         [self setup];
 
         self.style = aStyle;
         self.title = aTitle;
         self.message = aMessage;
-        self.appearance = appearance;
 
         if (selectAction && cancelAction) {
             RMGroupedAction *action = [RMGroupedAction actionWithStyle:RMActionStyleDefault andActions:@[cancelAction, selectAction]];
