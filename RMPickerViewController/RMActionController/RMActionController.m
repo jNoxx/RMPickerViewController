@@ -67,6 +67,7 @@
 #pragma mark - Implementations
 
 @implementation RMActionController
+//actionControllerWithStyle:title:message:selectAction:andCancelAction
 
 @synthesize disableMotionEffects = _disableMotionEffects;
 
@@ -84,11 +85,16 @@
     return [self actionControllerWithStyle:style title:nil message:nil selectAction:selectAction andCancelAction:cancelAction];
 }
 
++ (nonnull instancetype)actionControllerWithStyle:(RMActionControllerStyle)style title:(nullable NSString *)aTitle selectAction:(nullable RMAction *)selectAction andCancelAction:(nullable RMAction *)cancelAction {
+    return [self actionControllerWithStyle:style title:aTitle message:nil selectAction:selectAction andCancelAction:cancelAction];
+}
+
 + (nonnull instancetype)actionControllerWithStyle:(RMActionControllerStyle)style appearance:(RMActionControllerAppearance *)appearance title:(nullable NSString *)aTitle message:(nullable NSString *)aMessage selectAction:(nullable RMAction *)selectAction andCancelAction:(nullable RMAction *)cancelAction {
     return [[self alloc] initWithStyle:style appearance:appearance title:aTitle message:aMessage selectAction:selectAction andCancelAction:cancelAction];
 }
 
 #pragma mark - Init and Dealloc
+
 - (nonnull instancetype)initWithNibName:(nullable NSString *)nibNameOrNil bundle:(nullable NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if(self) {

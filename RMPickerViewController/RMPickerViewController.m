@@ -49,7 +49,7 @@
 
 #pragma mark - Class
 
-- (instancetype)initWithStyle:(RMActionControllerStyle)style title:(NSString *)aTitle message:(NSString *)aMessage selectAction:(RMAction *)selectAction andCancelAction:(RMAction *)cancelAction {
+- (instancetype)initWithStyle:(RMActionControllerStyle)style appearance:(nullable RMActionControllerAppearance *)appearance title:(NSString *)aTitle message:(NSString *)aMessage selectAction:(RMAction *)selectAction andCancelAction:(RMAction *)cancelAction {
     self = [super initWithStyle:style appearance:nil title:aTitle message:aMessage selectAction:selectAction andCancelAction:cancelAction];
     if (self) {
         self.picker = [[UIPickerView alloc] initWithFrame:CGRectZero];
@@ -82,6 +82,7 @@
 }
 
 #pragma mark - Orientation
+
 - (void)didRotate {
     NSTimeInterval duration = 0.4;
     
@@ -107,8 +108,13 @@
 }
 
 #pragma mark - Properties
+
 - (UIView *)contentView {
     return self.picker;
+}
+
+- (void)setPicker:(UIPickerView *)picker {
+    _picker = picker;
 }
 
 @end

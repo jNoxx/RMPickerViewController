@@ -7,10 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CA0D3ABC1DE1E5DE00DD6DCB /* RMActionController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA0D3AB91DE1E5A200DD6DCB /* RMActionController.framework */; };
-		CA0D3ABD1DE1E5F100DD6DCB /* RMActionController.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CA0D3AB91DE1E5A200DD6DCB /* RMActionController.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		6A04737926FDEE0C008EFDB7 /* RMActionController.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A04736126FDED58008EFDB7 /* RMActionController.h */; };
+		6A04737A26FDEE0C008EFDB7 /* RMActionControllerAppearance.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A04736026FDED58008EFDB7 /* RMActionControllerAppearance.h */; };
+		6A04737B26FDEE18008EFDB7 /* RMAction.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A04737726FDED66008EFDB7 /* RMAction.h */; };
+		6A04737C26FDEE18008EFDB7 /* RMImageAction.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A04737626FDED66008EFDB7 /* RMImageAction.h */; };
+		6A04737D26FDEE20008EFDB7 /* NSProcessInfo+RMActionController.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A04736926FDED65008EFDB7 /* NSProcessInfo+RMActionController.h */; };
+		6A04737E26FDEE20008EFDB7 /* UIView+RMActionController.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A04736B26FDED65008EFDB7 /* UIView+RMActionController.h */; };
+		6A04737F26FDEE20008EFDB7 /* RMActionControllerTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A04737326FDED66008EFDB7 /* RMActionControllerTransition.h */; };
+		6A04738026FDEE20008EFDB7 /* RMActionController+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A04736626FDED65008EFDB7 /* RMActionController+Private.h */; };
+		6A04738126FDEE20008EFDB7 /* RMScrollableGroupedAction.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A04737026FDED66008EFDB7 /* RMScrollableGroupedAction.h */; };
+		6A04738226FDEE20008EFDB7 /* RMGroupedAction.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A04736F26FDED66008EFDB7 /* RMGroupedAction.h */; };
+		6A04738326FDEE20008EFDB7 /* RMAction+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A04736526FDED65008EFDB7 /* RMAction+Private.h */; };
 		CA0D3ABF1DE1E60A00DD6DCB /* RMPickerViewController.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CA2799651DC6B5910077712D /* RMPickerViewController.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		CA0D3AC01DE1E60F00DD6DCB /* RMActionController.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CA0D3AB91DE1E5A200DD6DCB /* RMActionController.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CA1E624B1A24D6840025A6A6 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1E624A1A24D6840025A6A6 /* Launch Screen.xib */; };
 		CA27996C1DC6B5910077712D /* RMPickerViewController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA2799651DC6B5910077712D /* RMPickerViewController.framework */; };
 		CA27996D1DC6B5910077712D /* RMPickerViewController.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CA2799651DC6B5910077712D /* RMPickerViewController.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -38,55 +46,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		CA0D3AAE1DE1E5A200DD6DCB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = CA0D3AA51DE1E5A200DD6DCB /* RMActionController-Demo.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = CAD311A11B01507300D905F7;
-			remoteInfo = "RMActionController-Demo";
-		};
-		CA0D3AB01DE1E5A200DD6DCB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = CA0D3AA51DE1E5A200DD6DCB /* RMActionController-Demo.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = CAE78B041B850F5600CBB165;
-			remoteInfo = "RMActionController-SwiftDemo";
-		};
-		CA0D3AB21DE1E5A200DD6DCB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = CA0D3AA51DE1E5A200DD6DCB /* RMActionController-Demo.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = CAD311DB1B01517800D905F7;
-			remoteInfo = "RMActionController-DemoExtension";
-		};
-		CA0D3AB41DE1E5A200DD6DCB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = CA0D3AA51DE1E5A200DD6DCB /* RMActionController-Demo.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = CA3FDC9B1B35E1A700590165;
-			remoteInfo = "RMActionController-Demo-Tests";
-		};
-		CA0D3AB61DE1E5A200DD6DCB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = CA0D3AA51DE1E5A200DD6DCB /* RMActionController-Demo.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = CA55C7911B35E98E009CF003;
-			remoteInfo = "RMActionController-Demo-UITests";
-		};
-		CA0D3AB81DE1E5A200DD6DCB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = CA0D3AA51DE1E5A200DD6DCB /* RMActionController-Demo.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = CA5EFC281D8EAC5A0020C8A8;
-			remoteInfo = RMActionController;
-		};
-		CA0D3ABA1DE1E5D200DD6DCB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = CA0D3AA51DE1E5A200DD6DCB /* RMActionController-Demo.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = CA5EFC271D8EAC5A0020C8A8;
-			remoteInfo = RMActionController;
-		};
 		CA27996A1DC6B5910077712D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CABBCD1E189520D50006213F /* Project object */;
@@ -131,7 +90,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				CA0D3AC01DE1E60F00DD6DCB /* RMActionController.framework in Embed Frameworks */,
 				CA0D3ABF1DE1E60A00DD6DCB /* RMPickerViewController.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -143,7 +101,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				CA0D3ABD1DE1E5F100DD6DCB /* RMActionController.framework in Embed Frameworks */,
 				CA27996D1DC6B5910077712D /* RMPickerViewController.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -163,7 +120,26 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		CA0D3AA51DE1E5A200DD6DCB /* RMActionController-Demo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = "RMActionController-Demo.xcodeproj"; sourceTree = "<group>"; };
+		6A04736026FDED58008EFDB7 /* RMActionControllerAppearance.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RMActionControllerAppearance.h; path = RMPickerViewController/RMActionController/RMActionControllerAppearance.h; sourceTree = SOURCE_ROOT; };
+		6A04736126FDED58008EFDB7 /* RMActionController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RMActionController.h; path = RMPickerViewController/RMActionController/RMActionController.h; sourceTree = SOURCE_ROOT; };
+		6A04736226FDED58008EFDB7 /* RMActionControllerAppearance.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = RMActionControllerAppearance.m; path = RMPickerViewController/RMActionController/RMActionControllerAppearance.m; sourceTree = SOURCE_ROOT; };
+		6A04736326FDED58008EFDB7 /* RMActionController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = RMActionController.m; path = RMPickerViewController/RMActionController/RMActionController.m; sourceTree = SOURCE_ROOT; };
+		6A04736526FDED65008EFDB7 /* RMAction+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RMAction+Private.h"; sourceTree = "<group>"; };
+		6A04736626FDED65008EFDB7 /* RMActionController+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RMActionController+Private.h"; sourceTree = "<group>"; };
+		6A04736826FDED65008EFDB7 /* UIView+RMActionController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+RMActionController.m"; sourceTree = "<group>"; };
+		6A04736926FDED65008EFDB7 /* NSProcessInfo+RMActionController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSProcessInfo+RMActionController.h"; sourceTree = "<group>"; };
+		6A04736A26FDED65008EFDB7 /* NSProcessInfo+RMActionController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSProcessInfo+RMActionController.m"; sourceTree = "<group>"; };
+		6A04736B26FDED65008EFDB7 /* UIView+RMActionController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+RMActionController.h"; sourceTree = "<group>"; };
+		6A04736D26FDED66008EFDB7 /* RMGroupedAction.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RMGroupedAction.m; sourceTree = "<group>"; };
+		6A04736E26FDED66008EFDB7 /* RMScrollableGroupedAction.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RMScrollableGroupedAction.m; sourceTree = "<group>"; };
+		6A04736F26FDED66008EFDB7 /* RMGroupedAction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RMGroupedAction.h; sourceTree = "<group>"; };
+		6A04737026FDED66008EFDB7 /* RMScrollableGroupedAction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RMScrollableGroupedAction.h; sourceTree = "<group>"; };
+		6A04737226FDED66008EFDB7 /* RMActionControllerTransition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RMActionControllerTransition.m; sourceTree = "<group>"; };
+		6A04737326FDED66008EFDB7 /* RMActionControllerTransition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RMActionControllerTransition.h; sourceTree = "<group>"; };
+		6A04737526FDED66008EFDB7 /* RMAction.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RMAction.m; sourceTree = "<group>"; };
+		6A04737626FDED66008EFDB7 /* RMImageAction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RMImageAction.h; sourceTree = "<group>"; };
+		6A04737726FDED66008EFDB7 /* RMAction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RMAction.h; sourceTree = "<group>"; };
+		6A04737826FDED66008EFDB7 /* RMImageAction.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RMImageAction.m; sourceTree = "<group>"; };
 		CA1E624A1A24D6840025A6A6 /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
 		CA2799651DC6B5910077712D /* RMPickerViewController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RMPickerViewController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA2799681DC6B5910077712D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -202,7 +178,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA0D3ABC1DE1E5DE00DD6DCB /* RMActionController.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -243,18 +218,61 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		CA0D3AA61DE1E5A200DD6DCB /* Products */ = {
+		6A04736426FDED65008EFDB7 /* Private */ = {
 			isa = PBXGroup;
 			children = (
-				CA0D3AAF1DE1E5A200DD6DCB /* RMActionController-Demo.app */,
-				CA0D3AB11DE1E5A200DD6DCB /* RMActionController-SwiftDemo.app */,
-				CA0D3AB31DE1E5A200DD6DCB /* RMActionController-DemoExtension.appex */,
-				CA0D3AB51DE1E5A200DD6DCB /* RMActionController-Demo-Tests.xctest */,
-				CA0D3AB71DE1E5A200DD6DCB /* RMActionController-Demo-UITests.xctest */,
-				CA0D3AB91DE1E5A200DD6DCB /* RMActionController.framework */,
+				6A04736526FDED65008EFDB7 /* RMAction+Private.h */,
+				6A04736626FDED65008EFDB7 /* RMActionController+Private.h */,
 			);
-			name = Products;
-			sourceTree = "<group>";
+			name = Private;
+			path = RMPickerViewController/RMActionController/Private;
+			sourceTree = SOURCE_ROOT;
+		};
+		6A04736726FDED65008EFDB7 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				6A04736826FDED65008EFDB7 /* UIView+RMActionController.m */,
+				6A04736926FDED65008EFDB7 /* NSProcessInfo+RMActionController.h */,
+				6A04736A26FDED65008EFDB7 /* NSProcessInfo+RMActionController.m */,
+				6A04736B26FDED65008EFDB7 /* UIView+RMActionController.h */,
+			);
+			name = Categories;
+			path = RMPickerViewController/RMActionController/Categories;
+			sourceTree = SOURCE_ROOT;
+		};
+		6A04736C26FDED66008EFDB7 /* Grouping Actions */ = {
+			isa = PBXGroup;
+			children = (
+				6A04736D26FDED66008EFDB7 /* RMGroupedAction.m */,
+				6A04736E26FDED66008EFDB7 /* RMScrollableGroupedAction.m */,
+				6A04736F26FDED66008EFDB7 /* RMGroupedAction.h */,
+				6A04737026FDED66008EFDB7 /* RMScrollableGroupedAction.h */,
+			);
+			name = "Grouping Actions";
+			path = "RMPickerViewController/RMActionController/Grouping Actions";
+			sourceTree = SOURCE_ROOT;
+		};
+		6A04737126FDED66008EFDB7 /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				6A04737226FDED66008EFDB7 /* RMActionControllerTransition.m */,
+				6A04737326FDED66008EFDB7 /* RMActionControllerTransition.h */,
+			);
+			name = Animations;
+			path = RMPickerViewController/RMActionController/Animations;
+			sourceTree = SOURCE_ROOT;
+		};
+		6A04737426FDED66008EFDB7 /* Actions */ = {
+			isa = PBXGroup;
+			children = (
+				6A04737526FDED66008EFDB7 /* RMAction.m */,
+				6A04737626FDED66008EFDB7 /* RMImageAction.h */,
+				6A04737726FDED66008EFDB7 /* RMAction.h */,
+				6A04737826FDED66008EFDB7 /* RMImageAction.m */,
+			);
+			name = Actions;
+			path = RMPickerViewController/RMActionController/Actions;
+			sourceTree = SOURCE_ROOT;
 		};
 		CA2799661DC6B5910077712D /* RMPickerViewController */ = {
 			isa = PBXGroup;
@@ -277,7 +295,15 @@
 		CA2799781DC6B68C0077712D /* RMActionController */ = {
 			isa = PBXGroup;
 			children = (
-				CA0D3AA51DE1E5A200DD6DCB /* RMActionController-Demo.xcodeproj */,
+				6A04736126FDED58008EFDB7 /* RMActionController.h */,
+				6A04736326FDED58008EFDB7 /* RMActionController.m */,
+				6A04736026FDED58008EFDB7 /* RMActionControllerAppearance.h */,
+				6A04736226FDED58008EFDB7 /* RMActionControllerAppearance.m */,
+				6A04737426FDED66008EFDB7 /* Actions */,
+				6A04737126FDED66008EFDB7 /* Animations */,
+				6A04736726FDED65008EFDB7 /* Categories */,
+				6A04736C26FDED66008EFDB7 /* Grouping Actions */,
+				6A04736426FDED65008EFDB7 /* Private */,
 			);
 			path = RMActionController;
 			sourceTree = "<group>";
@@ -397,7 +423,18 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A04737F26FDEE20008EFDB7 /* RMActionControllerTransition.h in Headers */,
+				6A04737D26FDEE20008EFDB7 /* NSProcessInfo+RMActionController.h in Headers */,
+				6A04737A26FDEE0C008EFDB7 /* RMActionControllerAppearance.h in Headers */,
+				6A04738226FDEE20008EFDB7 /* RMGroupedAction.h in Headers */,
+				6A04737E26FDEE20008EFDB7 /* UIView+RMActionController.h in Headers */,
+				6A04737C26FDEE18008EFDB7 /* RMImageAction.h in Headers */,
+				6A04738126FDEE20008EFDB7 /* RMScrollableGroupedAction.h in Headers */,
+				6A04738326FDEE20008EFDB7 /* RMAction+Private.h in Headers */,
+				6A04737B26FDEE18008EFDB7 /* RMAction.h in Headers */,
 				CA2799741DC6B5DC0077712D /* RMPickerViewController.h in Headers */,
+				6A04737926FDEE0C008EFDB7 /* RMActionController.h in Headers */,
+				6A04738026FDEE20008EFDB7 /* RMActionController+Private.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -416,7 +453,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				CA0D3ABB1DE1E5D200DD6DCB /* PBXTargetDependency */,
 			);
 			name = RMPickerViewController;
 			productName = RMPickerViewController;
@@ -539,12 +575,6 @@
 			mainGroup = CABBCD1D189520D50006213F;
 			productRefGroup = CABBCD27189520D50006213F /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = CA0D3AA61DE1E5A200DD6DCB /* Products */;
-					ProjectRef = CA0D3AA51DE1E5A200DD6DCB /* RMActionController-Demo.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				CA2799641DC6B5910077712D /* RMPickerViewController */,
@@ -555,51 +585,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		CA0D3AAF1DE1E5A200DD6DCB /* RMActionController-Demo.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = "RMActionController-Demo.app";
-			remoteRef = CA0D3AAE1DE1E5A200DD6DCB /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		CA0D3AB11DE1E5A200DD6DCB /* RMActionController-SwiftDemo.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = "RMActionController-SwiftDemo.app";
-			remoteRef = CA0D3AB01DE1E5A200DD6DCB /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		CA0D3AB31DE1E5A200DD6DCB /* RMActionController-DemoExtension.appex */ = {
-			isa = PBXReferenceProxy;
-			fileType = "wrapper.app-extension";
-			path = "RMActionController-DemoExtension.appex";
-			remoteRef = CA0D3AB21DE1E5A200DD6DCB /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		CA0D3AB51DE1E5A200DD6DCB /* RMActionController-Demo-Tests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "RMActionController-Demo-Tests.xctest";
-			remoteRef = CA0D3AB41DE1E5A200DD6DCB /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		CA0D3AB71DE1E5A200DD6DCB /* RMActionController-Demo-UITests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "RMActionController-Demo-UITests.xctest";
-			remoteRef = CA0D3AB61DE1E5A200DD6DCB /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		CA0D3AB91DE1E5A200DD6DCB /* RMActionController.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = RMActionController.framework;
-			remoteRef = CA0D3AB81DE1E5A200DD6DCB /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		CA2799631DC6B5910077712D /* Resources */ = {
@@ -693,11 +678,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		CA0D3ABB1DE1E5D200DD6DCB /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = RMActionController;
-			targetProxy = CA0D3ABA1DE1E5D200DD6DCB /* PBXContainerItemProxy */;
-		};
 		CA27996B1DC6B5910077712D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = CA2799641DC6B5910077712D /* RMPickerViewController */;

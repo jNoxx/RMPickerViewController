@@ -117,7 +117,7 @@ typedef NS_ENUM(NSInteger, RMActionControllerStyle) {
  *
  *  @return A new instance of RMActionController.
  */
-+ (nonnull instancetype)actionControllerWithStyle:(RMActionControllerStyle)aStyle appearance:(RMActionControllerAppearance *)appearance title:(nullable NSString *)aTitle message:(nullable NSString *)aMessage selectAction:(nullable RMAction<T> *)selectAction andCancelAction:(nullable RMAction<T> *)cancelAction;
++ (nonnull instancetype)actionControllerWithStyle:(RMActionControllerStyle)aStyle appearance:(nullable RMActionControllerAppearance *)appearance title:(nullable NSString *)aTitle message:(nullable NSString *)aMessage selectAction:(nullable RMAction<T> *)selectAction andCancelAction:(nullable RMAction<T> *)cancelAction;
 
 /**
  *  Initializes a new instance of RMActionController.
@@ -133,7 +133,7 @@ typedef NS_ENUM(NSInteger, RMActionControllerStyle) {
  *
  *  @return An initialized of RMActionController.
  */
-- (nonnull instancetype)initWithStyle:(RMActionControllerStyle)aStyle appearance:(RMActionControllerAppearance *)appearance title:(nullable NSString *)aTitle message:(nullable NSString *)aMessage selectAction:(nullable RMAction<T> *)selectAction andCancelAction:(nullable RMAction<T> *)cancelAction NS_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)initWithStyle:(RMActionControllerStyle)aStyle appearance:(nullable RMActionControllerAppearance *)appearance title:(nullable NSString *)aTitle message:(nullable NSString *)aMessage selectAction:(nullable RMAction<T> *)selectAction andCancelAction:(nullable RMAction<T> *)cancelAction NS_DESIGNATED_INITIALIZER;
 
 
 /// @name User Interface
