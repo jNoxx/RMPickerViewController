@@ -119,7 +119,7 @@
         self.style = aStyle;
         self.title = aTitle;
         self.message = aMessage;
-        //self.appearance = appearance;
+        self.appearance = appearance;
 
         if (selectAction && cancelAction) {
             RMGroupedAction *action = [RMGroupedAction actionWithStyle:RMActionStyleDefault andActions:@[cancelAction, selectAction]];
